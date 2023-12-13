@@ -1,0 +1,53 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@skeditor/canvaskit-wasm": "0.28.1",
+    "@sketch-hq/sketch-file-format-ts": "^6.1.1",
+    "bowser": "1.9.2",
+    "debug": "2.6.9",
+    "jszip": "^3.4.0",
+    "rxjs": "6.2.1",
+    "ts-invariant": "^0.6.0",
+    "vue-virtual-scroller": "^2.0.0-alpha.1",
+    "vue3-perfect-scrollbar": "^1.5.5"    
+  },
+  "devDependencies": {
+    "@nuxt/devtools": "latest",
+    "nuxt": "^3.8.2",
+    "vue": "^3.3.10",
+    "vue-router": "^4.2.5",
+    "@nuxtjs/eslint-module": "^3.0.2",
+    "@types/debug": "^4.1.7",
+    "@types/fs-extra": "^9.0.13",
+    "@types/jest": "^27.0.2",
+    "@typescript-eslint/eslint-plugin": "^5.2.0",
+    "@typescript-eslint/parser": "^5.2.0",
+    "ali-oss": "^6.16.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "eslint": "^8.1.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-standard-with-typescript": "^21.0.1",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.1",
+    "express": "^4.17.1",
+    "fork-ts-checker-webpack-plugin": "^6.4.0",
+    "glob": "^7.2.0",
+    "jest": "^27.3.1",
+    "prettier": "^2.4.1",
+    "svg-sprite-loader": "^6.0.11",
+    "svgo-loader": "^3.0.0",
+    "ts-jest": "^27.0.7",
+    "typescript": "^4.4.4"       
+  }
+}
