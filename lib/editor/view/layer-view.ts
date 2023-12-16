@@ -37,6 +37,7 @@ export abstract class SkyBaseLayerView<T extends SkyBaseLayer = SkyBaseLayer> ex
   // 有 frame 也方便 debug
   constructor(public model: T) {
     super();
+    this.children = [];
     this.ctx.registerLayer(this.model.objectId, this);
     if (this.model instanceof SkyBaseGroup) {
       this.buildChildren(this.model.layers);

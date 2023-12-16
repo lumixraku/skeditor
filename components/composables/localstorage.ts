@@ -7,7 +7,7 @@ export function localStorageRef<T>(key: string, initValue: T): Ref<T> {
     ret.value = JSON.parse(pre);
   }
   watchEffect(() => {
-    localStorage.setItem(key, JSON.stringify(ret.value));
+    // localStorage.setItem(key, JSON.stringify(ret.value));
   });
   return ret as Ref<T>;
 }

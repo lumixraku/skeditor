@@ -1,3 +1,4 @@
+import type { SkyBaseLayerView } from '../view/layer-view';
 import sk from './canvaskit';
 import invariant from 'ts-invariant';
 
@@ -6,7 +7,7 @@ export const randomColor = (idx: number) => {
   return _[idx % _.length];
 };
 
-export function CacheGetter<T>(getKeyFn: (instance: T) => number) {
+export function CacheGetter<T = SkyBaseLayerView>(getKeyFn: (instance: T) => number): any{
   return function cacheGetterDecorator(target: any, propertyName: string, descriptor: PropertyDescriptor) {
     const getter = descriptor.get;
 

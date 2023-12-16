@@ -13,6 +13,7 @@ const emit = defineEmits<{
 }>();
 
 const fileList = ref([]);
+// console.log('onOpen', process.env.PUBLIC_PATH, process.env.NODE_ENV, process.env.NUXT_API_SECRET)
 fetch(process.env.PUBLIC_PATH + 'samples/manifest.json')
   .then((res) => res.json())
   .then((arr) => {

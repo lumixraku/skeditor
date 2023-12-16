@@ -1,4 +1,5 @@
-import { SkyModel, SkySymbolMaster, SkySymbolInstance, SketchFormat } from '.';
+import { SkyModel, SkySymbolMaster, SkySymbolInstance } from './index';
+import SketchFormat from '@sketch-hq/sketch-file-format-ts';
 import { Rect } from '../base/rect';
 import { Point } from '../base/point';
 import sk from '../util/canvaskit';
@@ -432,7 +433,9 @@ export class SkyBaseShapeLike<T extends SketchShapeLikes = SketchShapeLikes> ext
 
   _fromJson(data: T) {
     this.isClosed = data.isClosed ?? this.isClosed;
-    this.points = data.points?.map((point) => new SkyCurvePoint(this.frame).fromJson(point)) || [];
+    this.points = data.points?.map(point => { 
+      return new SkyCurvePoint(this.frame).fromJson(point) || []
+    });
   }
 }
 
@@ -567,7 +570,7 @@ export class SkyText extends SkyBaseLayer<SketchFormat.Text> {
     return this.style?.innerShadows.some((shadow) => shadow.isEnabled);
   }
 }
-
+console.log('SketchFormat', SketchFormat);
 export const SkyCurveMode = SketchFormat.CurveMode;
 
 const SkyMarkerType = SketchFormat.MarkerType;

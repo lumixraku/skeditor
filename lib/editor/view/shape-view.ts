@@ -21,7 +21,7 @@ import { CacheGetter } from '../util/misc';
 
 type SkyBasePath = SkyShapeGroup | SkyBaseShapeLike;
 export abstract class SkyBasePathView<T extends SkyBasePath = SkyBasePath> extends SkyBaseLayerView<T> {
-  children!: (SkyShapePathLikeView | SkyTextView)[];
+  // children: (SkyShapePathLikeView | SkyTextView)[];
   path?: SkPath;
   _painter?: PathPainter;
 
@@ -32,7 +32,6 @@ export abstract class SkyBasePathView<T extends SkyBasePath = SkyBasePath> exten
 
   constructor(model: T) {
     super(model);
-
     this.path = this.createPath();
   }
 
@@ -167,8 +166,13 @@ export abstract class SkyBasePathView<T extends SkyBasePath = SkyBasePath> exten
 }
 
 export class SkyShapeGroupView extends SkyBasePathView<SkyShapeGroup> {
-  children!: (SkyShapePathLikeView | SkyTextView)[];
+  // children: (SkyShapePathLikeView | SkyTextView)[];
   path?: SkPath;
+
+  // constructor(model) {
+  //   super(model);
+    
+  // }
 
   /**
    * combine children

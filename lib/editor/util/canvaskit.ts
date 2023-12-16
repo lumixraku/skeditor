@@ -24,7 +24,7 @@ let canvaskitWasm: string | undefined = undefined;
 
 // node 环境下不需要 locateFile
 if (process.env.NODE_ENV !== 'test') {
-  canvaskitWasm = 'node_modules/@skeditor/canvaskit-wasm/bin/canvaskit.wasm';
+  canvaskitWasm = '/canvaskit.wasm';
   canvaskitWasm = (canvaskitWasm as unknown as { default: string }).default || canvaskitWasm;
 }
 
@@ -32,13 +32,13 @@ const sk = {} as {
   CanvasKit: CanvasKit;
 };
 
-export const CanvaskitPromised = ((CanvasKitInitFn as any).default)({
+export const CanvaskitPromised = ((CanvasKitInitFn as any))({
   locateFile: canvaskitWasm && (() => canvaskitWasm),
 }).then((CanvasKitRes) => {
-  debugger
+  console.log('CanvasKitRes', CanvasKitRes);
   sk.CanvasKit = CanvasKitRes;
   if (process.env.NODE_ENV === 'development') {
-    (window as any).CanvasKit = CanvasKitRes;
+    (globalThis as any).CanvasKit = CanvasKitRes;
   }
   fontProvider = sk.CanvasKit.TypefaceFontProvider.Make();
 
@@ -56,18 +56,19 @@ export const defaultFonts = [
   // 'Noto Color Emoji'
 ];
 const defaultFontFiles = [
-  'Roboto-Regular.ttf',
-  'HarmonyOSSansSC-Regular.ttf',
+  '~/Roboto-Regular.ttf',
+  '~/HarmonyOSSansSC-Regular.ttf',
   // 'colorfulemoji.woff2'
 ];
 
 // 使用的时候再调用，CanvasKit 可能还没好。
 export function getFontMgr() {
+  // return Promise.resolve(fontMgr!);
   if (fontMgr) {
     return Promise.resolve(fontMgr!);
   }
   return Promise.all(
-    defaultFontFiles.map((filename) => fetch('/' + filename).then((res) => res.arrayBuffer()))
+    defaultFontFiles.map((filename) => fetch(filename).then((res) => res.arrayBuffer()))
   ).then((fonts) => {
     fonts.forEach((font) => {
       const hFont = new sk.CanvasKit.Font((sk.CanvasKit.FontMgr.RefDefault() as any).MakeTypefaceFromData(font), 72);
@@ -89,7 +90,7 @@ export function getFontProvider() {
 
 function prefetchFonts() {
   defaultFontFiles.forEach((filename, idx) => {
-    Promise.all([fetch('/' + filename), CanvaskitPromised])
+    Promise.all([fetch(filename), CanvaskitPromised])
       .then(([res]) => res.arrayBuffer())
       .then((buffer) => {
         const fontName = defaultFonts[idx];

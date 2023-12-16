@@ -6,7 +6,7 @@ import { SkyBaseLayerView } from './';
 // 干掉这个. 有点影响继承。
 // 这个类看起来不太需要了，children 相关已经移动到上层 SkyBaseLayerView 中了。
 export abstract class SkyBaseGroupView<T extends SkyBaseGroup = SkyBaseGroup> extends SkyBaseLayerView<T> {
-  children: SkyBaseLayerView[] = [];
+  // children!: SkyBaseLayerView[];
 
   // @CacheGetter<SkyBaseLayerView>((ins) => ins.layerUpdateId)
   get renderFrame() {

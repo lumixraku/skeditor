@@ -39,7 +39,7 @@ const sideBarOpen = EditorState.shared.showSidebar;
 const canvasContainer = ref();
 
 onMounted(() => {
-  fetchLocalSketchFileList();
+  // fetchLocalSketchFileList();
 
   watch(EditorState.shared.selectedPageIndex, (idx) => {
     selectedPage.value = pages.value[idx];
@@ -50,9 +50,11 @@ function fetchLocalSketchFileList() {
   return fetch(docLists)
     .then((res) => res.json())
     .then((val) => {
-      list.value = val;
-      if (!selectedFile.value) {
-        selectedFile.value = val[0];
+      if (val.length > 0) {
+        list.value = val;
+        if (!selectedFile.value) {
+          selectedFile.value = val[0];
+        }        
       }
 
       loadFile();
